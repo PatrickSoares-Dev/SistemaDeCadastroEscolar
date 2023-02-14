@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="en" @ViewData["HtmlAttribute"]>
+<html lang="pt-br" @ViewData["HtmlAttribute"]>
 <head>
     <meta charset="utf-8" />
-    <title>Color Admin | @ViewData["Title"]</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Telecall School | @ViewData["Title"]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="@ViewData["MetaDescription"]" />
     <meta name="author" content="@ViewData["MetaAuthor"]" />
     <meta name="keywords" content="@ViewData["MetaKeywords"]" />
@@ -61,8 +61,11 @@
 
     <!-- ================== BEGIN core-js ================== -->
     <script src="~/js/app.min.js"></script>
-		<script src="~/js/theme/default.min.js"></script>
+    <script src="~/js/theme/default.min.js"></script>
     <!-- ================== END core-js ================== -->
-    @RenderSection("Scripts", required: false)
+
+    @await RenderSectionAsync("Scripts", required: false)
+    @RenderSection("JavaScripts", required: false)
+
 </body>
 </html>

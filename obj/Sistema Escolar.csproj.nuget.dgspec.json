@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\patrick.oliveira\\Desktop\\Projeto do Sistema Escolar\\Sistema Escolar\\Sistema Escolar.csproj": {}
+    "C:\\Users\\patrick.oliveira\\Desktop\\SistemaDeCadastroEscolar\\Sistema Escolar.csproj": {}
   },
   "projects": {
-    "C:\\Users\\patrick.oliveira\\Desktop\\Projeto do Sistema Escolar\\Sistema Escolar\\Sistema Escolar.csproj": {
+    "C:\\Users\\patrick.oliveira\\Desktop\\SistemaDeCadastroEscolar\\Sistema Escolar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\patrick.oliveira\\Desktop\\Projeto do Sistema Escolar\\Sistema Escolar\\Sistema Escolar.csproj",
+        "projectUniqueName": "C:\\Users\\patrick.oliveira\\Desktop\\SistemaDeCadastroEscolar\\Sistema Escolar.csproj",
         "projectName": "Sistema Escolar",
-        "projectPath": "C:\\Users\\patrick.oliveira\\Desktop\\Projeto do Sistema Escolar\\Sistema Escolar\\Sistema Escolar.csproj",
+        "projectPath": "C:\\Users\\patrick.oliveira\\Desktop\\SistemaDeCadastroEscolar\\Sistema Escolar.csproj",
         "packagesPath": "C:\\Users\\patrick.oliveira\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\patrick.oliveira\\Desktop\\Projeto do Sistema Escolar\\Sistema Escolar\\obj\\",
+        "outputPath": "C:\\Users\\patrick.oliveira\\Desktop\\SistemaDeCadastroEscolar\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\patrick.oliveira\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -41,6 +41,26 @@
           "targetAlias": "net5.0",
           "dependencies": {
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.17, )"
             },
