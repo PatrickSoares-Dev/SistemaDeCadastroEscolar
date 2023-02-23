@@ -13,4 +13,5 @@ namespace Sistema_Escolar.Data
         public DbSet<AlunosModel> Alunos { get; set; }
 
     }
+
 }

@@ -1,8 +1,67 @@
-﻿@{
+﻿@model AlunosModel
+@{
     ViewData["Title"] = "Contato";
 }
 
 <h1 class="page-header">Alunos<small>| Aqui você pode administrar os alunos</small> </h1>
+
+
+<form asp-controller="Aluno" asp-action="Criar" method="post">
+
+
+
+    <div class="row" style="overflow-y: hidden !important; width: 99%;">
+        <div class="col-12">
+            <label for="select-required" class="float-left" style="font-size: 15px;">Nome do aluno</label>
+            <input class="form-control" id="inputNome" type=text name="NomeCompleto" placeholder="Nome completo"  asp-for="NomeCompleto"/>
+        </div>
+    </div>
+
+    <div class="row" style="overflow-y: hidden !important; width: 99%; margin-top: 18px;">
+
+        <div class="col-8">
+            <label for="select-required" class="float-left" style="font-size: 15px;">CPF</label>
+            <input class="form-control" id="inputCpf" placeholder="CPF" asp-for="CPF"/>
+        </div>
+
+        <div class="col-4">
+            <label for="select-required" class="float-left" style="font-size: 15px;">Data de nascimento</label>
+            <input class="form-control" id="inputDate" type=text name="DataNascimento" placeholder="Data de nascimento"  asp-for="DataNascimento"/>
+        </div>
+
+    </div>
+
+    <div class="row" style="overflow-y: hidden !important; width: 99%; margin-top: 18px;">
+
+        <div class="col-8">
+
+            <label for="select-required" class="float-left" style="font-size: 15px;">Escola</label>
+            <input class="form-control" id="inputEscola" type=text name="Escola" placeholder="Escola"  asp-for="Escola"/>
+
+            @*<select class="form-control" style="width: 100%;" asp-for="Escola" id="optionEscola" name="Escola" data-parsley-required="true">
+            <option disabled selected value="Selecione">Selecione</option>
+            <option selected value="Selecione">Crias (Unidade Bangu)</option>
+            </select>*@
+
+        </div>
+
+        <div class="col-4">
+
+            <label for="select-required" class="float-left" style="font-size: 15px;">Turma</label>
+            <input class="form-control" id="inputTurma" type=text name="Turma" placeholder="Turma"  asp-for="Turma"/>
+
+            @*<select class="form-control" style="width: 100%;" asp-for="Turma" id="optionTurma"  name="Turma" data-parsley-required="true">
+            <option disabled selected value="Selecione">Selecione</option>
+            <option selected value="Selecione">2003</option>
+            </select>*@
+
+        </div>
+    </div>
+
+    <button type="submit" style="width: 7rem; margin-top: 18px; margin-right: 1.7rem;" class="btn btn-primary float-right" id="">Cadastar</button>
+
+</form>
+
 
 <div class="panel panel-inverse">
 
@@ -16,51 +75,6 @@
         </swal-title>
 
         <swal-html>
-
-            <div class="row" style="overflow-y: hidden !important; width: 99%;">
-                <div class="col-12">
-                    <label for="select-required" class="float-left" style="font-size: 15px;">Nome do aluno</label>
-                    <input class="form-control" id="inputNome" type=text name="inputNome" placeholder="Nome completo" />
-                </div>
-            </div>
-
-            <div class="row" style="overflow-y: hidden !important; width: 99%; margin-top: 18px;">
-
-                <div class="col-8">
-                    <label for="select-required" class="float-left" style="font-size: 15px;">CPF</label>
-                    <input class="form-control" id="inputNome" type=text name="inputCPF" placeholder="CPF" />
-                </div>
-
-                <div class="col-4">
-                    <label for="select-required" class="float-left" style="font-size: 15px;">Data de nascimento</label>
-                    <input class="form-control" id="inputNome" type=text name="inputDataNascimento" placeholder="Data de nascimento" />
-                </div>
-
-            </div>
-
-            <div class="row" style="overflow-y: hidden !important; width: 99%; margin-top: 18px;">
-
-                <div class="col-8">
-
-                    <label for="select-required" class="float-left" style="font-size: 15px;">Escola</label>
-                    <select class="form-control" style="width: 100%;" id="optionEscola" name="Escola" data-parsley-required="true">
-                        <option disabled selected value="Selecione">Selecione</option>
-                    </select>
-
-                </div>
-
-                <div class="col-4">
-
-                    <label for="select-required" class="float-left" style="font-size: 15px;">Turma</label>
-                    <select class="form-control" style="width: 100%;" id="optionTurma" name="Turma" data-parsley-required="true">
-                        <option disabled selected value="Selecione">Selecione</option>
-                    </select>
-
-                </div>
-            </div>
-
-            <button type="submit" style="width: 7rem; margin-top: 18px; margin-right: 1.7rem;" class="btn btn-primary float-right" id="btnAddAluno">Cadastar</button>
-
 
         </swal-html>
 
