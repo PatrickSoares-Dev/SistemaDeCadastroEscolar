@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\patrick.oliveira\\Desktop\\SistemaDeCadastroEscolar\\Sistema Escolar.csproj": {}
+    "C:\\Users\\patri\\OneDrive\\Área de Trabalho\\Sistema escolar\\SistemaDeCadastroEscolar\\Sistema Escolar.csproj": {}
   },
   "projects": {
-    "C:\\Users\\patrick.oliveira\\Desktop\\SistemaDeCadastroEscolar\\Sistema Escolar.csproj": {
+    "C:\\Users\\patri\\OneDrive\\Área de Trabalho\\Sistema escolar\\SistemaDeCadastroEscolar\\Sistema Escolar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\patrick.oliveira\\Desktop\\SistemaDeCadastroEscolar\\Sistema Escolar.csproj",
+        "projectUniqueName": "C:\\Users\\patri\\OneDrive\\Área de Trabalho\\Sistema escolar\\SistemaDeCadastroEscolar\\Sistema Escolar.csproj",
         "projectName": "Sistema Escolar",
-        "projectPath": "C:\\Users\\patrick.oliveira\\Desktop\\SistemaDeCadastroEscolar\\Sistema Escolar.csproj",
-        "packagesPath": "C:\\Users\\patrick.oliveira\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\patrick.oliveira\\Desktop\\SistemaDeCadastroEscolar\\obj\\",
+        "projectPath": "C:\\Users\\patri\\OneDrive\\Área de Trabalho\\Sistema escolar\\SistemaDeCadastroEscolar\\Sistema Escolar.csproj",
+        "packagesPath": "C:\\Users\\patri\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\patri\\OneDrive\\Área de Trabalho\\Sistema escolar\\SistemaDeCadastroEscolar\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\patrick.oliveira\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\patri\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -75,7 +75,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -87,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

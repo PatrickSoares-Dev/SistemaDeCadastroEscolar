@@ -25,11 +25,11 @@ namespace Sistema_Escolar.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CPF")
-                        .HasColumnType("int");
+                    b.Property<long>("CPF")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("DataNascimento")
-                        .HasColumnType("int");
+                    b.Property<string>("DataNascimento")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Escola")
                         .HasColumnType("nvarchar(max)");

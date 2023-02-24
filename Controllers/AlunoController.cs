@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Sistema_Escolar.Models;
 using Sistema_Escolar.Repositorio;
+using System;
+using System.Threading.Tasks;
 
 namespace Sistema_Escolar.Controllers
 {
@@ -13,16 +15,20 @@ namespace Sistema_Escolar.Controllers
             _alunoRepositorio = alunoRepositorio;
         }
 
+        [HttpGet]
+        [Route("/aluno")]
         public IActionResult Index()
         {
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Criar(AlunosModel aluno)
+        [HttpGet]
+        [Route("/alunoadd")]
+        public async Task<JsonResult> Adicionar(int Id, string NomeCompleto, Int64 CPF, string DataNascimento, string Escola, string Turma)
         {
-            _alunoRepositorio.Adicionar(aluno);
-            return RedirectToAction("Index");
+            object response = await _alunoRepositorio.Adicionar(Id, NomeCompleto, CPF, DataNascimento, Escola, Turma);
+
+            return Json(response);
         }
     }
 }
