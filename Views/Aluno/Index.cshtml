@@ -5,161 +5,188 @@
 <h1 class="page-header">Alunos<small>| Aqui você pode administrar os alunos</small> </h1>
 
 <div class="panel panel-inverse">
+    <div id="" class="panel-heading">
+        <h4 class="panel-title">Banco de Alunos</h4>
+    </div>
+    <div class="form-group d-flex p-5">
 
-    <div class="panel-heading">
-        <h4 class="panel-title">Tabela de Alunos</h4>
+        <label for="select-required" class="d-flex align-items-center m-5">Turma: </label>
+        <select class="form-control w-25" id="select-required" name="client" data-parsley-required="true">
+        </select>
+        <div>
+            <button type="submit" style="width: 6rem; margin-left: 15px;" class="btn btn-primary" id="btnSearch">Buscar</button>
+        </div>     
     </div>
 
-    <template id="my-templateAlunoCreate">
-        <swal-title>
-            Adicionar Aluno
-        </swal-title>
+    <div class="float-right" style="margin-top: -55px;">
+        <button type="button" class="btn btn-primary float-right" id="btnAddAluno">Adicionar novo aluno</button>
+    </div>
 
-        <swal-html>
+</div>
 
-            <form>
-                <div class="row" style="overflow-y: hidden !important; width: 99%;">
-                    <div class="col-12">
-                        <label for="select-required" class="float-left" style="font-size: 15px;">Nome do aluno</label>
-                        <input class="form-control" id="inputNome" type=text name="NomeCompleto" placeholder="Nome completo" />
-                    </div>
-                </div>
-
-                <div class="row" style="overflow-y: hidden !important; width: 99%; margin-top: 18px;">
-
-                    <div class="col-8">
-                        <label for="select-required" class="float-left" style="font-size: 15px;">CPF</label>
-                        <input class="form-control" id="inputCpf" placeholder="CPF" />
-                    </div>
-
-                    <div class="col-4">
-                        <label for="select-required" class="float-left" style="font-size: 15px;">Data de nascimento</label>
-                        <input class="form-control" id="inputDate" type=text name="DataNascimento" placeholder="Data de nascimento" />
-                    </div>
-
-                </div>
-
-                <div class="row" style="overflow-y: hidden !important; width: 99%; margin-top: 18px;">
-
-                    <div class="col-8">
-
-                        <label for="select-required" class="float-left" style="font-size: 15px;">Escola</label>
-                        <input class="form-control" id="inputEscola" type=text name="Escola" placeholder="Escola" />
-
-                        @*<select class="form-control" style="width: 100%;" asp-for="Escola" id="optionEscola" name="Escola" data-parsley-required="true">
-                        <option disabled selected value="Selecione">Selecione</option>
-                        <option selected value="Selecione">Crias (Unidade Bangu)</option>
-                        </select>*@
-
-                    </div>
-
-                    <div class="col-4">
-
-                        <label for="select-required" class="float-left" style="font-size: 15px;">Turma</label>
-                        <input class="form-control" id="inputTurma" type=text name="Turma" placeholder="Turma" />
-
-                        @*<select class="form-control" style="width: 100%;" asp-for="Turma" id="optionTurma"  name="Turma" data-parsley-required="true">
-                        <option disabled selected value="Selecione">Selecione</option>
-                        <option selected value="Selecione">2003</option>
-                        </select>*@
-
-                    </div>
-                </div>
-
-                <button type="submit" style="width: 7rem; margin-top: 18px; margin-right: 1.7rem;" class="btn btn-primary float-right" id="btnAddNew">Cadastar</button>
-
-            </form>
-
-        </swal-html>
-
-        <swal-param name="allowEscapeKey" value="false" />
-        <swal-param name="customClass"
-                    value='{ "popup": "my-popup" }' />
-    </template>
-
-
-
-    <div class="row" style="margin-left: -0px !important;">
-        <div class="tab-content col-xl-11" style="margin-left: -0px !important; width: 95% !important;">
-            <div class="tab-pane fade active show" id="default-tab-1">
-                <div class="">
-                    <div class="panel-body" style="width: 108% !important;">
-
-                        @*
-                        Tabela de Contatos*@
-
-                        <div class="">
-                            <button type="button" class="btn btn-primary float-right" id="btnAddAluno">Adicionar novo aluno</button>
-                        </div>
-
-                        <div class="">
-                            <h6 class="display-6">Lista de contatos</h6>
-                        </div>
-
-                        <table class="table table-striped table-sm">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">Nome Completo</th>
-                                    <th scope="col">CPF</th>
-                                    <th scope="col">Data de nascimento</th>
-                                    <th scope="col">Matricula</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Patrick Gasoso</td>
-                                    <td>176.321.007-31</td>
-                                    <td>07/03/2002</td>
-                                    <td>0124252023</td>
-
-                                    <td style="margin-right: -15px;">
-
-                                        <button type="button" class="btn btn-primary">Editar</button>
-
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Patrick Soares </td>
-                                    <td>176.321.007-32</td>
-                                    <td>07/03/2003</td>
-                                    <td>0125252023</td>
-                                    <td>
-
-                                        <button type="button" class="btn btn-primary">Editar</button>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Patrick Oliveira</td>
-                                    <td>176.321.007-33</td>
-                                    <td>07/03/2004</td>
-                                    <td>0126252023</td>
-                                    <td>
-
-                                        <button type="button" class="btn btn-primary">Editar</button>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div id="usageContainer" style="" class="panel panel-inverse">
+    <div class="panel-body" style="width: 100% !important;">
+        <table id="tabelaAlunos" class="table table-hover display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Matricula</th>
+                    <th>Nome Completo</th>
+                    <th>Turma</th>
+                    <th>CPF</th>
+                    <th>Data de Nascimento</th>
+                    <th>Status do Aluno</th>
+                    <th> </th>
+                </tr>
+            </thead>
+        </table>
     </div>
 </div>
 
+<template id="my-templateAlunoCreate">
+    <swal-title>
+        Adicionar Aluno
+    </swal-title>
+
+    <swal-html>
+
+        <form>
+            <div class="row" style="overflow-y: hidden !important; width: 99%;">
+                <div class="col-12">
+                    <label for="select-required" class="float-left" style="font-size: 15px;">Nome do aluno</label>
+                    <input class="form-control" id="inputNome" type=text name="NomeCompleto" placeholder="Nome completo" />
+                </div>
+            </div>
+
+            <div class="row" style="overflow-y: hidden !important; width: 99%; margin-top: 18px;">
+
+                <div class="col-8">
+                    <label for="select-required" class="float-left" style="font-size: 15px;">CPF</label>
+                    <input class="form-control" id="inputCpf" placeholder="CPF"  />
+                </div>
+
+                <div class="col-4">
+                    <label for="select-required" class="float-left" style="font-size: 15px;">Data de nascimento</label>
+                    <input class="form-control" id="inputDate" type=text name="DataNascimento" placeholder="Data de nascimento"  />
+                </div>
+
+            </div>
+
+            <div class="row" style="overflow-y: hidden !important; width: 99%; margin-top: 18px;">
+
+                <div class="col-8">
+
+                    <label for="optionEscola" class="float-left" style="font-size: 15px;">Escola</label>
+
+                    <select class="form-control" style="width: 100%;" id="optionEscola" name="Escola" data-parsley-required="true">
+                        <option disabled selected value="Selecione">Selecione</option>
+                        <option  value="Crias (Unidade Bangu)">Crias (Unidade Bangu)</option>
+                    </select>
+
+                </div>
+
+                <div class="col-4">
+
+                    <label for="optionTurma" class="float-left" style="font-size: 15px;">Turma</label>
+
+                    <select class="form-control" style="width: 100%;" id="optionTurma" name="Turma" data-parsley-required="true">
+                        <option disabled selected value="Selecione">Selecione</option>
+                        <option  value="2003">2003</option>
+                    </select>
+
+                </div>
+            </div>
+
+            <button type="submit" style="width: 7rem; margin-top: 18px; margin-right: 1.7rem;" class="btn btn-primary float-right" id="btnAddNew">Cadastar</button>
+
+        </form>
+
+    </swal-html>
+
+    <swal-param name="allowEscapeKey" value="false" />
+    <swal-param name="customClass"
+                value='{ "popup": "my-popup" }' />
+</template>
+
+<template id="my-templateAlunoEdit">
+    <swal-title>
+        Editar informações do Aluno
+    </swal-title>
+
+    <swal-html>
+
+        <form>
+            <div class="row" style="overflow-y: hidden !important; width: 99%;">
+                <div class="col-8">
+                    <label for="select-required" class="float-left" style="font-size: 15px;">Nome do aluno</label>
+                    <input class="form-control" id="inputNome" type=text name="NomeCompleto" placeholder="Nome completo"  disabled/>
+                </div>
+                <div class="col-4">
+                    <label for="select-required" class="float-left" style="font-size: 15px;">Data de nascimento</label>
+                    <input class="form-control" id="inputDate" type=text name="DataNascimento" placeholder="Data de nascimento" disabled />
+                </div>
+            </div>
+
+            <div class="row" style="overflow-y: hidden !important; width: 99%; margin-top: 18px;">
+
+                <div class="col-8">
+                    <label for="select-required" class="float-left" style="font-size: 15px;">CPF</label>
+                    <input class="form-control" id="inputCpf" placeholder="CPF" disabled />
+                </div>
+
+                <div class="col-4">                   
+                    <label for="select-required" class="float-left" style="font-size: 15px;">Status</label>
+                    <select class="form-control" style="width: 100%;" id="optionStatus" name="Status" data-parsley-required="true">
+                        <option selected value="Ativo">Ativo</option>
+                        <option value="Inativo">Inativo</option>
+                        <option value="Trancado">Trancado</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="row" style="overflow-y: hidden !important; width: 99%; margin-top: 18px;">
+
+                <div class="col-8">
+
+                    <label for="optionEscola" class="float-left" style="font-size: 15px;">Escola</label>
+
+                    <select class="form-control" style="width: 100%;" id="optionEscola" name="Escola" data-parsley-required="true">
+                    <option disabled value="Selecione">Selecione</option>
+                    <option selected value="Crias (Unidade Bangu)">Crias (Unidade Bangu)</option>
+                    </select>
+
+                </div>
+
+                <div class="col-4">
+
+                    <label for="optionTurma" class="float-left" style="font-size: 15px;">Turma</label>
+
+                    <select class="form-control" style="width: 100%;" id="optionTurma"  name="Turma" data-parsley-required="true">
+                    <option disabled value="Selecione">Selecione</option>
+                    <option selected value="2003">2003</option>
+                    </select>
+
+                </div>
+            </div>
+
+            
+            <button type="button" style="width: 7rem; margin-top: 28px; margin-right: 1.7rem;" class="btn btn-primary float-right" id="btnAlterar">Alterar</button>
+            <button type="button" style="width: 7rem; margin-top: 28px; margin-right: 1.2rem;" class="btn btn-danger float-right" id="btnRemover">Remover</button>
+
+        </form>
+
+    </swal-html>
+
+    <swal-param name="allowEscapeKey" value="false" />
+    <swal-param name="customClass"
+                value='{ "popup": "my-popup" }' />
+</template>
+
 @section JavaScripts {
-    @*<script type="text/javascript" src="~/lib/datatables/js/jquery.dataTables.min.js"></script>*@
+    <script type="text/javascript" src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @*<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js" asp-append-version="true"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js" asp-append-version="true"></script>*@
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js" asp-append-version="true"></script>
     <script type="text/javascript" src="~/js/Aluno.js" asp-append-version="true"></script>
 }
 

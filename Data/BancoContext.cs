@@ -10,8 +10,12 @@ namespace Sistema_Escolar.Data
 
         }
 
+        public DbSet<EscolaModel> Escolas { get; set; }
+        public DbSet<TurmaModel> Turmas { get; set; }
         public DbSet<AlunosModel> Alunos { get; set; }
+       
 
     }
+
 
 }
