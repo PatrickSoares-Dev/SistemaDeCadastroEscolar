@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "HgU37aKqypM0/usFJ3/PBIsVg/vnKw/ncxpcAEitQhVfVExBovOT1/ymhl8pbgBF6lbSwKexS5mI85K4oaCxRw==",
+  "dgSpecHash": "dDywMRi60VcnnVRb2q377sy/NQlhVgMGT9+MWosO9jQoc3Ad9jXEYwbeaZgp5M8VdHy/KzQn311Voy9FZRA0OQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\patri\\OneDrive\\Área de Trabalho\\Sistema escolar\\SistemaDeCadastroEscolar\\Sistema Escolar.csproj",
   "expectedPackageFiles": [
@@ -30,6 +30,7 @@
     "C:\\Users\\patri\\.nuget\\packages\\microsoft.extensions.dependencymodel\\5.0.0\\microsoft.extensions.dependencymodel.5.0.0.nupkg.sha512",
     "C:\\Users\\patri\\.nuget\\packages\\microsoft.extensions.logging\\5.0.0\\microsoft.extensions.logging.5.0.0.nupkg.sha512",
     "C:\\Users\\patri\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\5.0.0\\microsoft.extensions.logging.abstractions.5.0.0.nupkg.sha512",
+    "C:\\Users\\patri\\.nuget\\packages\\microsoft.extensions.objectpool\\7.0.3\\microsoft.extensions.objectpool.7.0.3.nupkg.sha512",
     "C:\\Users\\patri\\.nuget\\packages\\microsoft.extensions.options\\5.0.0\\microsoft.extensions.options.5.0.0.nupkg.sha512",
     "C:\\Users\\patri\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\patri\\.nuget\\packages\\microsoft.identity.client\\4.14.0\\microsoft.identity.client.4.14.0.nupkg.sha512",

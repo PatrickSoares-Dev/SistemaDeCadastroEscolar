@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sistema_Escolar.Models
 {
@@ -7,12 +8,21 @@ namespace Sistema_Escolar.Models
     {
 
         [Key]
-        public int Codigo_Escola { get; set; }
-        public string Nome_Escola { get; set; }
-        public int Qtde_Turmas { get; set; }
-        public int Qtde_Alunos { get; set; }
+        public int ID_Escola { get; set; }
 
-        public virtual ICollection<TurmaModel> Turmas { get; set; }
+        public string Nome_Escola { get; set; }
+
+        private int _qtdeTurmas;
+        public int Qtde_Turmas
+        {
+            get { return _qtdeTurmas > 0 ? _qtdeTurmas : Turmas?.Count ?? 0; }
+            set { _qtdeTurmas = value; }
+        }
+        public int Qtde_Alunos { get; set; } = 0;
+
+        public virtual ICollection<TurmasModel> Turmas { get; set; }
+
+        public virtual ICollection<AlunosModel> Alunos { get; set; }
 
         public EscolaModel()
         {
@@ -20,4 +30,5 @@ namespace Sistema_Escolar.Models
         }
 
     }
+    
 }

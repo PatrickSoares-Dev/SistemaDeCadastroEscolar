@@ -8,17 +8,43 @@ namespace Sistema_Escolar.Models
     public class AlunosModel
     {
         [Key]
-        public int ID_ALUNO { get; set; }
-        public int ID_TURMA { get; set; }
-        public int ANO_LETIVO => DateTime.Now.Year;
-        public string Nome_Completo { get; set; }
-        public string CPF { get; set; }
-        public DateTime Data_Nascimento { get; set; }
-        public string Status_Cadastro { get; set; }
-        public int Codigo_Turma { get; set; }
+        public int ID_Aluno { get; set; }
 
-        public virtual TurmaModel Turma { get; set; }
-        public string Nome_Escola => Turma?.Escola?.Nome_Escola; // Propriedade de navegação para acessar o nome da escola
+
+        [Required(ErrorMessage = "A turma é obrigatória.")]
+        public int ID_Turma { get; set; }
+
+        [Required(ErrorMessage = "A escola é obrigatória.")]
+        public int ID_Escola { get; set; }
+
+        [Required(ErrorMessage = "O ano letivo é obrigatório.")]
+        public int Ano_Letivo { get; set; } = DateTime.Now.Year;
+
+        [Required(ErrorMessage = "O nome completo é obrigatório.")]
+        public string Nome_Completo { get; set; }
+
+        [Required(ErrorMessage = "O CPF é obrigatório.")]
+        public string CPF { get; set; }
+
+        [Required(ErrorMessage = "A data de nascimento é obrigatória.")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime DataDeNascimento { get; set; }
+
+        [Required(ErrorMessage = "O status do cadastro é obrigatório.")]
+        public string Status_Cadastro { get; set; }
+
+        public virtual TurmasModel Turma { get; set; }
+
+        public virtual EscolaModel Escola { get; set; }
+
+        public string Matricula
+        {
+            get
+            {
+                var posicao = ID_Aluno.ToString("D2");
+                return $"{posicao}-{ID_Escola}-{ID_Turma}-{Ano_Letivo}";
+            }
+        }
 
         public AlunosModel()
         {

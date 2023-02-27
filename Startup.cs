@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Sistema_Escolar.Data;
 using Sistema_Escolar.Repositorio;
+using Sistema_Escolar.Repositorio.IServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,8 @@ namespace Sistema_Escolar
             services.AddControllersWithViews();
             services.AddEntityFrameworkSqlServer().AddDbContext<BancoContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DataBase")));
             services.AddScoped<IAlunoRepositorio, AlunosRepositorio>();
+            services.AddScoped<IEscolaRepositorio, EscolaRepositorio>();
+            services.AddScoped<ITurmaRepositorio, TurmaRepositorio>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

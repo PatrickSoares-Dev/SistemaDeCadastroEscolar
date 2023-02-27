@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sistema_Escolar.Models;
-using Sistema_Escolar.Repositorio;
+using Sistema_Escolar.Repositorio.IServices;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -25,9 +25,9 @@ namespace Sistema_Escolar.Controllers
 
         [HttpGet]
         [Route("/alunoadd")]
-        public async Task<JsonResult> Adicionar(int Id, int Turma, int AnoLetivo, string NomeCompleto, string CPF, DateTime DataNascimento, string StatusCadastro, int CodigoTurma)
+        public async Task<JsonResult> Adicionar(int Escola, int Turma, string NomeCompleto, string CPF, DateTime DataNascimento)
         {
-            object response = await _alunoRepositorio.Adicionar(Id, Turma, AnoLetivo, NomeCompleto, CPF, DataNascimento, StatusCadastro, CodigoTurma);
+            object response = await _alunoRepositorio.Adicionar(Escola, Turma, NomeCompleto, CPF, DataNascimento);
 
             return Json(response);
         }
@@ -42,25 +42,25 @@ namespace Sistema_Escolar.Controllers
 
         [HttpGet]
         [Route("/infoaluno")]
-        public async Task<JsonResult> InfoAluno(int Id)
+        public async Task<JsonResult> InfoAluno(string Matricula)
         {
-            AlunosModel alunoId = _alunoRepositorio.InfoAluno(Id);
+            AlunosModel alunoId = _alunoRepositorio.InfoAluno(Matricula);
             return Json(alunoId);
         }
 
         [HttpGet]
         [Route("/editaluno")]
-        public async Task<JsonResult> EditarAluno(int Id ,string StatusCadastro, int Turma)
+        public async Task<JsonResult> EditarAluno(string Matricula, string StatusCadastro, int Turma)
         {
-            object response = await _alunoRepositorio.EditarAluno(Id, StatusCadastro, Turma);
+            object response = await _alunoRepositorio.EditarAluno(Matricula, StatusCadastro, Turma);
             return Json(response);
         }
 
         [HttpGet]
         [Route("/apagaraluno")]
-        public async Task<JsonResult> ApagarAluno(int Id)
+        public async Task<JsonResult> ApagarAluno(string Matricula)
         {
-            object response = await _alunoRepositorio.ApagarAluno(Id);
+            object response = await _alunoRepositorio.ApagarAluno(Matricula);
             return Json(response);
         }
     }

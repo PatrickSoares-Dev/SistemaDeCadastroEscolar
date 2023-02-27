@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Contato";
+    ViewData["Title"] = "Alunos";
 }
 
 <h1 class="page-header">Alunos<small>| Aqui você pode administrar os alunos</small> </h1>
@@ -19,7 +19,7 @@
     </div>
 
     <div class="float-right" style="margin-top: -55px;">
-        <button type="button" class="btn btn-primary float-right" id="btnAddAluno">Adicionar novo aluno</button>
+        <button type="button" class="btn btn-primary float-right" style="margin-right: 15px;" id="btnAddAluno">Adicionar novo aluno</button>
     </div>
 
 </div>
@@ -61,12 +61,12 @@
 
                 <div class="col-8">
                     <label for="select-required" class="float-left" style="font-size: 15px;">CPF</label>
-                    <input class="form-control" id="inputCpf" placeholder="CPF"  />
+                    <input class="form-control" id="inputCpf" placeholder="CPF" />
                 </div>
 
                 <div class="col-4">
                     <label for="select-required" class="float-left" style="font-size: 15px;">Data de nascimento</label>
-                    <input class="form-control" id="inputDate" type=text name="DataNascimento" placeholder="Data de nascimento"  />
+                    <input class="form-control" id="inputDate" type=text name="DataNascimento" placeholder="Data de nascimento" />
                 </div>
 
             </div>
@@ -79,7 +79,7 @@
 
                     <select class="form-control" style="width: 100%;" id="optionEscola" name="Escola" data-parsley-required="true">
                         <option disabled selected value="Selecione">Selecione</option>
-                        <option  value="Crias (Unidade Bangu)">Crias (Unidade Bangu)</option>
+                        <option value="Crias (Unidade Bangu)">Crias (Unidade Bangu)</option>
                     </select>
 
                 </div>
@@ -90,7 +90,7 @@
 
                     <select class="form-control" style="width: 100%;" id="optionTurma" name="Turma" data-parsley-required="true">
                         <option disabled selected value="Selecione">Selecione</option>
-                        <option  value="2003">2003</option>
+                        <option value="Turma A">Turma A</option>
                     </select>
 
                 </div>
@@ -118,7 +118,7 @@
             <div class="row" style="overflow-y: hidden !important; width: 99%;">
                 <div class="col-8">
                     <label for="select-required" class="float-left" style="font-size: 15px;">Nome do aluno</label>
-                    <input class="form-control" id="inputNome" type=text name="NomeCompleto" placeholder="Nome completo"  disabled/>
+                    <input class="form-control" id="inputNome" type=text name="NomeCompleto" placeholder="Nome completo" disabled />
                 </div>
                 <div class="col-4">
                     <label for="select-required" class="float-left" style="font-size: 15px;">Data de nascimento</label>
@@ -133,7 +133,7 @@
                     <input class="form-control" id="inputCpf" placeholder="CPF" disabled />
                 </div>
 
-                <div class="col-4">                   
+                <div class="col-4">
                     <label for="select-required" class="float-left" style="font-size: 15px;">Status</label>
                     <select class="form-control" style="width: 100%;" id="optionStatus" name="Status" data-parsley-required="true">
                         <option selected value="Ativo">Ativo</option>
@@ -151,8 +151,8 @@
                     <label for="optionEscola" class="float-left" style="font-size: 15px;">Escola</label>
 
                     <select class="form-control" style="width: 100%;" id="optionEscola" name="Escola" data-parsley-required="true">
-                    <option disabled value="Selecione">Selecione</option>
-                    <option selected value="Crias (Unidade Bangu)">Crias (Unidade Bangu)</option>
+                        <option disabled value="Selecione">Selecione</option>
+                        <option selected value="Crias (Unidade Bangu)">Crias (Unidade Bangu)</option>
                     </select>
 
                 </div>
@@ -161,15 +161,15 @@
 
                     <label for="optionTurma" class="float-left" style="font-size: 15px;">Turma</label>
 
-                    <select class="form-control" style="width: 100%;" id="optionTurma"  name="Turma" data-parsley-required="true">
-                    <option disabled value="Selecione">Selecione</option>
-                    <option selected value="2003">2003</option>
+                    <select class="form-control" style="width: 100%;" id="optionTurma" name="Turma" data-parsley-required="true">
+                        <option disabled value="Selecione">Selecione</option>
+                        <option selected value="2003">2003</option>
                     </select>
 
                 </div>
             </div>
 
-            
+
             <button type="button" style="width: 7rem; margin-top: 28px; margin-right: 1.7rem;" class="btn btn-primary float-right" id="btnAlterar">Alterar</button>
             <button type="button" style="width: 7rem; margin-top: 28px; margin-right: 1.2rem;" class="btn btn-danger float-right" id="btnRemover">Remover</button>
 

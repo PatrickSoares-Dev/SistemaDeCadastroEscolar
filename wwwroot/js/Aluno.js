@@ -21,6 +21,50 @@ function popupCreateAluno() {
 
     //Campos do PoPup
 
+    //$.ajax({
+    //    contentType: "application/json",
+    //    url: '/allescolas',
+    //    type: 'GET',
+    //    dataType: 'json',
+    //    success: function (data) {
+
+    //        console.log(data)
+
+    //        if (data.length == 0) {
+    //            alert("Não existe escolas cadastradas")
+    //        }
+
+    //        for (let i = 0; i < data.length; i++) {
+    //            numberInputElementCreator('option', 'optionSelect', 'optionEscola', data[i].nome_Escola)
+    //        }
+
+    //    },
+    //    error: function (response) {
+    //    }
+    //})
+
+    //$.ajax({
+    //    contentType: "application/json",
+    //    url: '/allturmas',
+    //    type: 'GET',
+    //    dataType: 'json',
+    //    success: function (data) {
+
+    //        console.log(data)
+
+    //        if (data.length == 0) {
+    //            alert("Não existe escolas cadastradas")
+    //        }
+
+    //        for (let i = 0; i < data.length; i++) {
+    //            numberInputElementCreator('option', 'optionSelect', 'optionTurmas', data[i].nome_Escola)
+    //        }
+
+    //    },
+    //    error: function (response) {
+    //    }
+    //})
+
 
     let btnAdd = document.querySelector("#btnAddNew")
     btnAdd.addEventListener('click', addAluno)
@@ -67,7 +111,7 @@ function SearchAlunos() {
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-
+            console.log(data)
             $('#tabelaAlunos').DataTable({
                 data: data,
                 columns: [
@@ -240,4 +284,11 @@ function onFail(mensagem) {
         title: mensagem
     })
 
+}
+
+function numberInputElementCreator(element, id, elementPai, value) {
+    let newElement = document.createElement(element)
+    newElement.id = id
+    newElement.textContent = value
+    document.querySelector(`#${elementPai}`).appendChild(newElement);
 }

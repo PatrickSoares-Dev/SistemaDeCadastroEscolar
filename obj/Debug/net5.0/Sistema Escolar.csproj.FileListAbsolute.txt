@@ -508,7 +508,6 @@ C:\Users\patri\OneDrive\Área de Trabalho\Sistema escolar\SistemaDeCadastroEscol
 C:\Users\patri\OneDrive\Área de Trabalho\Sistema escolar\SistemaDeCadastroEscolar\bin\Debug\net5.0\refs\Microsoft.Extensions.Logging.EventLog.dll
 C:\Users\patri\OneDrive\Área de Trabalho\Sistema escolar\SistemaDeCadastroEscolar\bin\Debug\net5.0\refs\Microsoft.Extensions.Logging.EventSource.dll
 C:\Users\patri\OneDrive\Área de Trabalho\Sistema escolar\SistemaDeCadastroEscolar\bin\Debug\net5.0\refs\Microsoft.Extensions.Logging.TraceSource.dll
-C:\Users\patri\OneDrive\Área de Trabalho\Sistema escolar\SistemaDeCadastroEscolar\bin\Debug\net5.0\refs\Microsoft.Extensions.ObjectPool.dll
 C:\Users\patri\OneDrive\Área de Trabalho\Sistema escolar\SistemaDeCadastroEscolar\bin\Debug\net5.0\refs\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 C:\Users\patri\OneDrive\Área de Trabalho\Sistema escolar\SistemaDeCadastroEscolar\bin\Debug\net5.0\refs\Microsoft.Extensions.Options.DataAnnotations.dll
 C:\Users\patri\OneDrive\Área de Trabalho\Sistema escolar\SistemaDeCadastroEscolar\bin\Debug\net5.0\refs\Microsoft.Extensions.Options.dll
@@ -780,3 +779,6 @@ C:\Users\patri\OneDrive\Área de Trabalho\Sistema escolar\SistemaDeCadastroEscol
 C:\Users\patri\OneDrive\Área de Trabalho\Sistema escolar\SistemaDeCadastroEscolar\obj\Debug\net5.0\Sistema Escolar.genruntimeconfig.cache
 C:\Users\patri\OneDrive\Área de Trabalho\Sistema escolar\SistemaDeCadastroEscolar\obj\Debug\net5.0\ref\Sistema Escolar.dll
 C:\Users\patri\OneDrive\Área de Trabalho\Sistema escolar\SistemaDeCadastroEscolar\bin\Debug\net5.0\libman.json
+C:\Users\patri\OneDrive\Área de Trabalho\Sistema escolar\SistemaDeCadastroEscolar\obj\Debug\net5.0\Razor\Views\Escola\Index.cshtml.g.cs
+C:\Users\patri\OneDrive\Área de Trabalho\Sistema escolar\SistemaDeCadastroEscolar\obj\Debug\net5.0\Razor\Views\Turma\Index.cshtml.g.cs
+C:\Users\patri\OneDrive\Área de Trabalho\Sistema escolar\SistemaDeCadastroEscolar\bin\Debug\net5.0\Microsoft.Extensions.ObjectPool.dll

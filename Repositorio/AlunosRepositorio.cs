@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Sistema_Escolar.Data;
 using Sistema_Escolar.Models;
+using Sistema_Escolar.Repositorio.IServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,16 +26,18 @@ namespace Sistema_Escolar.Repositorio
             return _bancoContext.Alunos.ToList();
         }
 
-        public async Task<object> Adicionar(int Id, int Turma, int AnoLetivo, string NomeCompleto, string CPF, DateTime DataNascimento, string StatusCadastro, int CodigoTurma )
+        public async Task<object> Adicionar(int Escola, int Turma, string NomeCompleto, string CPF, DateTime DataNascimento)
         {
+
+
 
           AlunosModel Aluno = new AlunosModel() 
             {
-                ID_ALUNO = Id,
-                ID_TURMA = Turma,
+                ID_Escola = Escola,
+                ID_Turma = Turma,
                 Nome_Completo = NomeCompleto,
                 CPF = CPF,
-                Data_Nascimento = DataNascimento
+                DataDeNascimento = DataNascimento
 
             };
 
@@ -42,20 +45,17 @@ namespace Sistema_Escolar.Repositorio
             _bancoContext.Alunos.Add(Aluno);
             _bancoContext.SaveChanges();
 
-            AlunosModel newAluno = InfoAluno(Id);
-            string response = JsonConvert.SerializeObject(newAluno);
-
-            return Task.FromResult<object>(response);
+            return Aluno;
         }
 
-        public AlunosModel InfoAluno(int Id)
+        public AlunosModel InfoAluno(string Matricula)
         {
-            return _bancoContext.Alunos.FirstOrDefault(x => x.ID_ALUNO == Id);
+            return _bancoContext.Alunos.FirstOrDefault(x => x.Matricula == Matricula);
         }
 
-        public Task<object> EditarAluno(int Id, string StatusCadastro, int Turma)
+        public Task<object> EditarAluno(string Matricula, string StatusCadastro, int Turma)
         {
-            AlunosModel alunoDB = InfoAluno(Id);
+            AlunosModel alunoDB = InfoAluno(Matricula);
 
             if(alunoDB == null )
             {
@@ -63,21 +63,21 @@ namespace Sistema_Escolar.Repositorio
             }
 
             alunoDB.Status_Cadastro= StatusCadastro;
-            alunoDB.Codigo_Turma = Turma;
+            alunoDB.ID_Turma = Turma;
 
             _bancoContext.Alunos.Update(alunoDB);
             _bancoContext.SaveChanges();
 
-            AlunosModel alunoAtt = InfoAluno(Id);
+            AlunosModel alunoAtt = InfoAluno(Matricula);
 
             string response = JsonConvert.SerializeObject(alunoAtt);
             return Task.FromResult<object>(response);
 
         }
 
-        public Task<object> ApagarAluno(int Id)
+        public Task<object> ApagarAluno(string Matricula)
         {
-            AlunosModel alunoDB = InfoAluno(Id);
+            AlunosModel alunoDB = InfoAluno(Matricula);
 
             if (alunoDB == null)
             {
@@ -87,7 +87,7 @@ namespace Sistema_Escolar.Repositorio
             _bancoContext.Alunos.Remove(alunoDB);
             _bancoContext.SaveChanges();
 
-            AlunosModel newAluno = InfoAluno(Id);
+            AlunosModel newAluno = InfoAluno(Matricula);
             string response = JsonConvert.SerializeObject(newAluno);
 
             return Task.FromResult<object>(response);
