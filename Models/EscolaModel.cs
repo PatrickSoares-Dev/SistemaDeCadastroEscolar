@@ -12,12 +12,16 @@ namespace Sistema_Escolar.Models
 
         public string Nome_Escola { get; set; }
 
+        [NotMapped]
         private int _qtdeTurmas;
+
+        [NotMapped]
         public int Qtde_Turmas
         {
             get { return _qtdeTurmas > 0 ? _qtdeTurmas : Turmas?.Count ?? 0; }
             set { _qtdeTurmas = value; }
         }
+        [NotMapped]
         public int Qtde_Alunos { get; set; } = 0;
 
         public virtual ICollection<TurmasModel> Turmas { get; set; }

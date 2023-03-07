@@ -38,7 +38,7 @@ function popupCreateEscola() {
             dataType: 'json',
             data: dataEscola,
             success: function (data) {
-
+                console.log(data)
                 onSucess("Escola adicionada com sucesso.")
             },
             error: function (response) {

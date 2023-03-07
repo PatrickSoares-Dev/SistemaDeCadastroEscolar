@@ -21,49 +21,49 @@ function popupCreateAluno() {
 
     //Campos do PoPup
 
-    //$.ajax({
-    //    contentType: "application/json",
-    //    url: '/allescolas',
-    //    type: 'GET',
-    //    dataType: 'json',
-    //    success: function (data) {
+    $.ajax({
+        contentType: "application/json",
+        url: '/allescolas',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
 
-    //        console.log(data)
+            console.log(data)
 
-    //        if (data.length == 0) {
-    //            alert("Não existe escolas cadastradas")
-    //        }
+            if (data.length == 0) {
+                alert("Não existe escolas cadastradas")
+            }
 
-    //        for (let i = 0; i < data.length; i++) {
-    //            numberInputElementCreator('option', 'optionSelect', 'optionEscola', data[i].nome_Escola)
-    //        }
+            for (let i = 0; i < data.length; i++) {
+                numberInputElementCreator('option', 'optionSelect', 'optionEscola', data[i].nome_Escola, data[i].iD_Escola)
+            }
 
-    //    },
-    //    error: function (response) {
-    //    }
-    //})
+        },
+        error: function (response) {
+        }
+    })
 
-    //$.ajax({
-    //    contentType: "application/json",
-    //    url: '/allturmas',
-    //    type: 'GET',
-    //    dataType: 'json',
-    //    success: function (data) {
+    $.ajax({
+        contentType: "application/json",
+        url: '/allturma',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
 
-    //        console.log(data)
+            console.log(data)
 
-    //        if (data.length == 0) {
-    //            alert("Não existe escolas cadastradas")
-    //        }
+            if (data.length == 0) {
+                alert("Não existe escolas cadastradas")
+            }
 
-    //        for (let i = 0; i < data.length; i++) {
-    //            numberInputElementCreator('option', 'optionSelect', 'optionTurmas', data[i].nome_Escola)
-    //        }
+            for (let i = 0; i < data.length; i++) {
+                numberInputElementCreator('option', 'optionSelect', 'optionTurma', data[i].nome_Turma, data[i].iD_Turma )
+            }
 
-    //    },
-    //    error: function (response) {
-    //    }
-    //})
+        },
+        error: function (response) {
+        }
+    })
 
 
     let btnAdd = document.querySelector("#btnAddNew")
@@ -81,7 +81,9 @@ function popupCreateAluno() {
         let $Escola = Escola.options[Escola.selectedIndex].value;
         let $Turma = Turma.options[Turma.selectedIndex].value;     
 
-        let dataAlunos = { NomeCompleto: $Nome.value, CPF: $CPF.value, DataNascimento: $DataNascimento.value, Escola: $Escola.value, Turma: $Turma.value }
+        let dataAlunos = { Escola: $Escola, Turma: $Turma, NomeCompleto: $Nome.value, CPF: $CPF.value, DataNascimento: $DataNascimento.value}
+
+        console.log(dataAlunos)
 
         $.ajax({
             contentType: "application/json",
@@ -115,11 +117,11 @@ function SearchAlunos() {
             $('#tabelaAlunos').DataTable({
                 data: data,
                 columns: [
-                    { "data": "iD_ALUNO" },
+                    { "data": "matricula" },
                     { "data": "nome_Completo", },
-                    { "data": "turma" },
+                    { "data": "iD_Turma" },
                     { "data": "cpf" },
-                    { "data": "data_Nascimento" },
+                    { "data": "dataDeNascimento" },
                     { "data": "status_Cadastro" },
                 ],
                 "columnDefs": [
@@ -286,9 +288,10 @@ function onFail(mensagem) {
 
 }
 
-function numberInputElementCreator(element, id, elementPai, value) {
-    let newElement = document.createElement(element)
-    newElement.id = id
-    newElement.textContent = value
+function numberInputElementCreator(element, id, elementPai, text, value) {
+    let newElement = document.createElement(element);
+    newElement.id = id;
+    newElement.textContent = text;
+    newElement.value = value;
     document.querySelector(`#${elementPai}`).appendChild(newElement);
 }

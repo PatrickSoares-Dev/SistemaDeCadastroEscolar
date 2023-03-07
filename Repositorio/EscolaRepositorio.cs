@@ -41,7 +41,7 @@ namespace Sistema_Escolar.Repositorio
             _bancoContext.Escolas.Add(Escola);
             _bancoContext.SaveChanges();
 
-            return Escola;
+             return Escola;
         }
 
         public EscolaModel InfoEscola(string NomeEscola)
@@ -107,8 +107,8 @@ namespace Sistema_Escolar.Repositorio
                             EscolaModel viewModel = new EscolaModel();
                             viewModel.ID_Escola = (int)reader["ID_Escola"];
                             viewModel.Nome_Escola = (string)reader["Nome_Escola"];
-                            viewModel.Qtde_Turmas = (int)reader["Qtde_Turmas"];
-                            viewModel.Qtde_Alunos = (int)reader["Qtde_Alunos"];
+                            viewModel.Qtde_Turmas = reader.IsDBNull(reader.GetOrdinal("Qtde_Turmas")) ? 0 : (int)reader["Qtde_Turmas"];
+                            viewModel.Qtde_Alunos = reader.IsDBNull(reader.GetOrdinal("Qtde_Alunos")) ? 0 : (int)reader["Qtde_Alunos"];
                             result.Add(viewModel);
                         }
                     }
@@ -116,8 +116,6 @@ namespace Sistema_Escolar.Repositorio
             }
             return await Task.FromResult(result);
         }
-
-
     }
 }
 

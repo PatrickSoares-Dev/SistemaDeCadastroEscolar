@@ -30,7 +30,7 @@ function popupCreateTurma() {
 
         let $NomeTurma = document.querySelector("#inputNomeTurma")
 
-        let dataTurma = { NomeEscola: $NomeEscola, NomeTurma: $NomeTurma.value }
+        let dataTurma = { NomeEscola: 'Crias (Unidade Bangu)', NomeTurma: $NomeTurma.value }
         console.log(dataTurma)
 
         $.ajax({

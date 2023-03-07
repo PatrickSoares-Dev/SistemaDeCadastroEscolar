@@ -39,6 +39,8 @@ namespace Sistema_Escolar.Controllers
             return Json(Turma);
         }
 
+
+
         //[HttpGet]
         //[Route("/infoaluno")]
         //public async Task<JsonResult> InfoAluno(string Matricula)

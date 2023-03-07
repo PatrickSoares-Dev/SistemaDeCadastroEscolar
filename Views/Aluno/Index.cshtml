@@ -66,7 +66,7 @@
 
                 <div class="col-4">
                     <label for="select-required" class="float-left" style="font-size: 15px;">Data de nascimento</label>
-                    <input class="form-control" id="inputDate" type=text name="DataNascimento" placeholder="Data de nascimento" />
+                    <input class="form-control" id="inputDate"  type=text name="DataNascimento" placeholder="Data de nascimento" />
                 </div>
 
             </div>
@@ -79,18 +79,15 @@
 
                     <select class="form-control" style="width: 100%;" id="optionEscola" name="Escola" data-parsley-required="true">
                         <option disabled selected value="Selecione">Selecione</option>
-                        <option value="Crias (Unidade Bangu)">Crias (Unidade Bangu)</option>
                     </select>
 
                 </div>
 
                 <div class="col-4">
 
-                    <label for="optionTurma" class="float-left" style="font-size: 15px;">Turma</label>
-
+                    <label for="optionTurma" class="float-left" style="font-size: 15px;">Turma</label>                    
                     <select class="form-control" style="width: 100%;" id="optionTurma" name="Turma" data-parsley-required="true">
                         <option disabled selected value="Selecione">Selecione</option>
-                        <option value="Turma A">Turma A</option>
                     </select>
 
                 </div>
@@ -181,6 +178,15 @@
     <swal-param name="customClass"
                 value='{ "popup": "my-popup" }' />
 </template>
+
+<style>
+
+
+    #BtnAddAluno{
+
+    }
+
+</style>
 
 @section JavaScripts {
     <script type="text/javascript" src="~/lib/datatables/js/jquery.dataTables.min.js"></script>

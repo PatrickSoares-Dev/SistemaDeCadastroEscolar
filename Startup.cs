@@ -32,6 +32,7 @@ namespace Sistema_Escolar
             services.AddScoped<IAlunoRepositorio, AlunosRepositorio>();
             services.AddScoped<IEscolaRepositorio, EscolaRepositorio>();
             services.AddScoped<ITurmaRepositorio, TurmaRepositorio>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -75,12 +75,6 @@ namespace Sistema_Escolar.Migrations
                     b.Property<string>("Nome_Escola")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Qtde_Alunos")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Qtde_Turmas")
-                        .HasColumnType("int");
-
                     b.HasKey("ID_Escola");
 
                     b.ToTable("Escolas");

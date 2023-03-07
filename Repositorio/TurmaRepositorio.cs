@@ -55,10 +55,12 @@ namespace Sistema_Escolar.Repositorio
             // Inserção no banco de dados
             _bancoContext.Turmas.Add(Turma);
             _bancoContext.SaveChanges();
+            string sql = "CREATE OR ALTER VIEW EscolasTurmasAlunos AS SELECT e.*, t.Qtde_Turmas, t.Qtde_Alunos FROM Escolas e LEFT JOIN ( SELECT ID_Escola, COUNT(DISTINCT ID_Turma) AS Qtde_Turmas, SUM(Qtde_Alunos) AS Qtde_Alunos FROM ( SELECT t.ID_Escola, t.ID_Turma, COUNT(*) AS Qtde_Alunos FROM Turmas t INNER JOIN Alunos a ON a.ID_Turma = t.ID_Turma GROUP BY t.ID_Escola, t.ID_Turma ) a GROUP BY ID_Escola ) t ON t.ID_Escola = e.ID_Escola;";
             using (SqlConnection connection = new SqlConnection(_bancoContext.Database.GetConnectionString()))
             {
+                
                 connection.Open();
-                using (SqlCommand command = new SqlCommand("CREATE OR ALTER VIEW EscolasTurmasAlunos AS SELECT e.*, t.Qtde_Turmas, t.Qtde_Alunos FROM Escolas e LEFT JOIN ( SELECT ID_Escola, COUNT(DISTINCT ID_Turma) AS Qtde_Turmas, SUM(Qtde_Alunos) AS Qtde_Alunos FROM ( SELECT t.ID_Escola, t.ID_Turma, COUNT(*) AS Qtde_Alunos FROM Turmas t INNER JOIN Alunos a ON a.ID_Turma = t.ID_Turma GROUP BY t.ID_Escola, t.ID_Turma ) a GROUP BY ID_Escola ) t ON t.ID_Escola = e.ID_Escola;", connection))
+                using (SqlCommand command = new SqlCommand(sql, connection))
                 {
                     command.ExecuteNonQuery();
                 }

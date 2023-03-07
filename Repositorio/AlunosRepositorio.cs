@@ -29,8 +29,6 @@ namespace Sistema_Escolar.Repositorio
         public async Task<object> Adicionar(int Escola, int Turma, string NomeCompleto, string CPF, DateTime DataNascimento)
         {
 
-
-
           AlunosModel Aluno = new AlunosModel() 
             {
                 ID_Escola = Escola,
