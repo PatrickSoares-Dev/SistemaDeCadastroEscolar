@@ -34,10 +34,13 @@ namespace Sistema_Escolar.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DataDeNascimento")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<int?>("EscolaID_Escola")
                         .HasColumnType("int");
+
+                    b.Property<string>("EscolaNome")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ID_Escola")
                         .HasColumnType("int");
@@ -54,6 +57,12 @@ namespace Sistema_Escolar.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TurmaID_Turma")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TurmaNome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("qtd_Alunos")
                         .HasColumnType("int");
 
                     b.HasKey("ID_Aluno");

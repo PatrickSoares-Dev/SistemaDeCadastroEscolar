@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sistema_Escolar.Repositorio.IServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,11 +11,11 @@ namespace Sistema_Escolar.Models
         [Key]
         public int ID_Aluno { get; set; }
 
-
         [Required(ErrorMessage = "A turma é obrigatória.")]
         public int ID_Turma { get; set; }
 
         [Required(ErrorMessage = "A escola é obrigatória.")]
+
         public int ID_Escola { get; set; }
 
         [Required(ErrorMessage = "O ano letivo é obrigatório.")]
@@ -27,6 +28,7 @@ namespace Sistema_Escolar.Models
         public string CPF { get; set; }
 
         [Required(ErrorMessage = "A data de nascimento é obrigatória.")]
+        [Column(TypeName = "date")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DataDeNascimento { get; set; }
 
@@ -35,20 +37,27 @@ namespace Sistema_Escolar.Models
 
         public virtual TurmasModel Turma { get; set; }
 
+        public int qtd_Alunos { get; set; }
+
         public virtual EscolaModel Escola { get; set; }
+
+        public string TurmaNome { get; set; } // Adicionar esta propriedade
+        public string EscolaNome { get; set; } // Adicionar esta propriedade
 
         public string Matricula
         {
             get
             {
                 var posicao = ID_Aluno.ToString("D2");
-                return $"{posicao}-{ID_Escola}-{ID_Turma}-{Ano_Letivo}";
+                return $"{posicao}{ID_Escola}{ID_Turma}{Ano_Letivo}";
             }
         }
+
 
         public AlunosModel()
         {
             Status_Cadastro = "Ativo";
         }
     }
+
 }

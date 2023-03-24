@@ -15,7 +15,7 @@
         </select>
         <div>
             <button type="submit" style="width: 6rem; margin-left: 15px;" class="btn btn-primary" id="btnSearch">Buscar</button>
-        </div>     
+        </div>
     </div>
 
     <div class="float-right" style="margin-top: -55px;">
@@ -66,7 +66,7 @@
 
                 <div class="col-4">
                     <label for="select-required" class="float-left" style="font-size: 15px;">Data de nascimento</label>
-                    <input class="form-control" id="inputDate"  type=text name="DataNascimento" placeholder="Data de nascimento" />
+                    <input class="form-control" id="inputDate" type=text name="DataNascimento" placeholder="Data de nascimento" />
                 </div>
 
             </div>
@@ -78,22 +78,22 @@
                     <label for="optionEscola" class="float-left" style="font-size: 15px;">Escola</label>
 
                     <select class="form-control" style="width: 100%;" id="optionEscola" name="Escola" data-parsley-required="true">
-                        <option disabled selected value="Selecione">Selecione</option>
+                        <option disabled selected value="">Selecione</option>
                     </select>
 
                 </div>
 
-                <div class="col-4">
+                <div class="col-4" id='divTurma' style="display: none !important;">
 
-                    <label for="optionTurma" class="float-left" style="font-size: 15px;">Turma</label>                    
+                    <label for="optionTurma" class="float-left" style="font-size: 15px;">Turma</label>
                     <select class="form-control" style="width: 100%;" id="optionTurma" name="Turma" data-parsley-required="true">
-                        <option disabled selected value="Selecione">Selecione</option>
+                        <option disabled selected value="">Selecione</option>
                     </select>
 
                 </div>
             </div>
 
-            <button type="submit" style="width: 7rem; margin-top: 18px; margin-right: 1.7rem;" class="btn btn-primary float-right" id="btnAddNew">Cadastar</button>
+            <button type="submit" style="width: 7rem; margin-top: 18px; margin-right: 1.7rem;" class="btn btn-primary float-right" disabled id="btnAddNew">Cadastar</button>
 
         </form>
 
@@ -119,7 +119,7 @@
                 </div>
                 <div class="col-4">
                     <label for="select-required" class="float-left" style="font-size: 15px;">Data de nascimento</label>
-                    <input class="form-control" id="inputDate" type=text name="DataNascimento" placeholder="Data de nascimento" disabled />
+                    <input class="form-control" id="inputDate" type=text name="DataNascimento" placeholder="dd/mm/yyyy" disabled />
                 </div>
             </div>
 
@@ -133,7 +133,7 @@
                 <div class="col-4">
                     <label for="select-required" class="float-left" style="font-size: 15px;">Status</label>
                     <select class="form-control" style="width: 100%;" id="optionStatus" name="Status" data-parsley-required="true">
-                        <option selected value="Ativo">Ativo</option>
+                        <option value="Ativo">Ativo</option>
                         <option value="Inativo">Inativo</option>
                         <option value="Trancado">Trancado</option>
                     </select>
@@ -149,7 +149,6 @@
 
                     <select class="form-control" style="width: 100%;" id="optionEscola" name="Escola" data-parsley-required="true">
                         <option disabled value="Selecione">Selecione</option>
-                        <option selected value="Crias (Unidade Bangu)">Crias (Unidade Bangu)</option>
                     </select>
 
                 </div>
@@ -160,7 +159,6 @@
 
                     <select class="form-control" style="width: 100%;" id="optionTurma" name="Turma" data-parsley-required="true">
                         <option disabled value="Selecione">Selecione</option>
-                        <option selected value="2003">2003</option>
                     </select>
 
                 </div>
@@ -179,21 +177,17 @@
                 value='{ "popup": "my-popup" }' />
 </template>
 
-<style>
-
-
-    #BtnAddAluno{
-
+<script>
+    .is - invalid {
+        border: 1px solid red;
     }
-
-</style>
+</script>
 
 @section JavaScripts {
+
     <script type="text/javascript" src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js" asp-append-version="true"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js" asp-append-version="true"></script>
     <script type="text/javascript" src="~/js/Aluno.js" asp-append-version="true"></script>
 }
-
-

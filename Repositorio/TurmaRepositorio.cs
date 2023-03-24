@@ -16,18 +16,60 @@ namespace Sistema_Escolar.Repositorio
 {
     public class TurmaRepositorio : ITurmaRepositorio
     {
-        private readonly IEscolaRepositorio _escolaRepositorio;
         private readonly BancoContext _bancoContext;
-
 
         public TurmaRepositorio(BancoContext bancoContext)
         {
             _bancoContext = bancoContext;
         }
 
+        public async Task<List<TurmasModel>> ObterTurmas()
+        {
+            return await _bancoContext.Turmas
+                .Include(t => t.Alunos)
+                .ToListAsync();
+        }
+
         public List<TurmasModel> BuscarTodos()
         {
             return _bancoContext.Turmas.ToList();
+        }
+        public async Task<TurmasModel> ObterTurma(int idTurma)
+        {
+            return await _bancoContext.Turmas
+                .Include(t => t.Alunos)
+                .SingleOrDefaultAsync(t => t.ID_Turma == idTurma);
+        }
+
+        public async Task<int> ContarAluno(int idTurma)
+        {
+            return await _bancoContext.Alunos
+                .CountAsync(a => a.ID_Turma == idTurma);
+        }
+
+        public async Task<List<AlunosModel>> ObterAlunosDaTurma(int idTurma)
+        {
+            var turma = await _bancoContext.Turmas
+                .Include(t => t.Alunos)
+                .FirstOrDefaultAsync(t => t.ID_Turma == idTurma);
+
+            if (turma == null)
+            {
+                return null;
+            }
+
+            var alunos = await _bancoContext.Alunos
+                .Where(a => a.ID_Turma == idTurma)
+                .Select(a => new AlunosModel
+                {
+                    ID_Aluno = a.ID_Aluno,
+                    Nome_Completo = a.Nome_Completo,
+                    qtd_Alunos = turma.Alunos.Count(),
+                    ID_Turma = a.ID_Turma
+                })
+                .ToListAsync();
+
+            return alunos;
         }
 
         public async Task<object> Adicionar(string NomeEscola, string NomeTurma)
@@ -45,7 +87,7 @@ namespace Sistema_Escolar.Repositorio
             // Obtém o ID da escola encontrada
             int idEscola = escola.ID_Escola;
 
-            TurmasModel Turma = new TurmasModel() 
+            TurmasModel Turma = new TurmasModel()
             {
                 ID_Escola = idEscola,
                 Nome_Escola = NomeEscola,
@@ -58,7 +100,7 @@ namespace Sistema_Escolar.Repositorio
             string sql = "CREATE OR ALTER VIEW EscolasTurmasAlunos AS SELECT e.*, t.Qtde_Turmas, t.Qtde_Alunos FROM Escolas e LEFT JOIN ( SELECT ID_Escola, COUNT(DISTINCT ID_Turma) AS Qtde_Turmas, SUM(Qtde_Alunos) AS Qtde_Alunos FROM ( SELECT t.ID_Escola, t.ID_Turma, COUNT(*) AS Qtde_Alunos FROM Turmas t INNER JOIN Alunos a ON a.ID_Turma = t.ID_Turma GROUP BY t.ID_Escola, t.ID_Turma ) a GROUP BY ID_Escola ) t ON t.ID_Escola = e.ID_Escola;";
             using (SqlConnection connection = new SqlConnection(_bancoContext.Database.GetConnectionString()))
             {
-                
+
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
@@ -73,6 +115,15 @@ namespace Sistema_Escolar.Repositorio
         {
             throw new NotImplementedException();
         }
+
+        public async Task<object> ObterTurmasDaEscola(int idEscola)
+        {
+            return await _bancoContext.Turmas
+            .Where(t => t.ID_Escola == idEscola)
+            .Include(t => t.Alunos)
+            .ToListAsync();
+        }
+
 
         //public AlunosModel InfoEscola(string Matricula)
         //{

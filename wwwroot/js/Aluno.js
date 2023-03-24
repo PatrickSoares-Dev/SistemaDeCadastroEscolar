@@ -1,8 +1,121 @@
-﻿
+﻿window.addEventListener('load', SearchAlunos)
+
+//Funcionando
+//function SearchAlunos() {
+
+//    $.ajax({
+//        contentType: "application/json",
+//        url: '/allalunos',
+//        type: 'GET',
+//        dataType: 'json',
+//        success: function (data) {
+//            console.log(data)
+
+//            data = data.map(function (row) {
+//                row.dataDeNascimento = new Date(row.dataDeNascimento).toLocaleDateString('pt-BR');
+//                return row;
+//            });
+//            $('#tabelaAlunos').DataTable({
+//                data: data,
+//                columns: [
+//                    { "data": "matricula" },
+//                    { "data": "nome_Completo", },
+//                    { "data": "iD_Turma" }, 
+//                    { "data": "cpf" },
+//                    { "data": "dataDeNascimento" },
+//                    { "data": "status_Cadastro" },
+//                ],
+//                "columnDefs": [
+//                    {
+//                        "targets": 6,
+//                        "render": function (data, type, row) {
+//                            return "<button id='" + data + "' type='button' onclick='InfoAluno(this);'class='btn btn-primary'>Editar</button >";
+//                        }
+//                    }
+//                ]
+//            });
+
+//        },
+//        error: function (data) {
+//            alert("Error: " + data)
+//        }
+//    });
+
+//}
+
+
+function SearchAlunos() {
+
+    $.ajax({
+        contentType: "application/json",
+        url: '/allalunos',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            console.log(data)
+
+            let dataTurma = data.map(row => row.iD_Turma)
+            let dataEscola = data.map(row => row.iD_Escola)
+                        
+
+            data = data.map(function (row) {
+                row.dataDeNascimento = new Date(row.dataDeNascimento).toLocaleDateString('pt-BR');
+                return row;
+            });
+
+            let objData = { idEscola: dataEscola[0], idTurma: dataTurma[0] }
+            console.log(objData)
+
+            $.ajax({
+                contentType: "application/json",
+                url: '/getnameturmaeescola',
+                type: 'GET',
+                dataType: 'json',
+                data: objData,
+                success: function (data) {
+
+                    console.log(data)
+
+
+                },
+                error: function (response) {
+                }
+            })
+
+        },
+        error: function (data) {
+            alert("Error: " + data)
+        }
+    });
+
+    //$('#tabelaAlunos').DataTable({
+    //    data: data,
+    //    columns: [
+    //        { "data": "matricula" },
+    //        { "data": "nome_Completo", },
+    //        { "data": "iD_Turma" },
+    //        { "data": "cpf" },
+    //        { "data": "dataDeNascimento" },
+    //        { "data": "status_Cadastro" },
+    //    ],
+    //    "columnDefs": [
+    //        {
+    //            "targets": 6,
+    //            "render": function (data, type, row) {
+    //                return "<button id='" + data + "' type='button' onclick='InfoAluno(this);'class='btn btn-primary'>Editar</button >";
+    //            }
+    //        }
+    //    ]
+    //});
+
+
+}
+
 let btnAddAluno = document.querySelector("#btnAddAluno")
 btnAddAluno.addEventListener("click", popupCreateAluno)
 
 function popupCreateAluno() {
+
     Swal.fire({
         template: '#my-templateAlunoCreate',
         toast: false,
@@ -18,6 +131,8 @@ function popupCreateAluno() {
         },
     })
 
+    let Escola = document.querySelector("#optionEscola")
+    let Turma = document.querySelector("#optionTurma")
 
     //Campos do PoPup
 
@@ -31,7 +146,7 @@ function popupCreateAluno() {
             console.log(data)
 
             if (data.length == 0) {
-                alert("Não existe escolas cadastradas")
+                onFail("Não existe ESCOLAS cadastradas.")
             }
 
             for (let i = 0; i < data.length; i++) {
@@ -43,28 +158,42 @@ function popupCreateAluno() {
         }
     })
 
-    $.ajax({
-        contentType: "application/json",
-        url: '/allturma',
-        type: 'GET',
-        dataType: 'json',
-        success: function (data) {
+    Escola.addEventListener('change', function () {
 
-            console.log(data)
+        let divTurma = document.querySelector("#divTurma")
+        let $Escola = Escola.options[Escola.selectedIndex].value;
 
-            if (data.length == 0) {
-                alert("Não existe escolas cadastradas")
+        let objData = { idEscola: $Escola }
+
+        $.ajax({
+            contentType: "application/json",
+            url: '/turmaescola',
+            type: 'GET',
+            dataType: 'json',
+            data: objData,
+            success: function (data) {
+
+                let dataTurmas = data.turmas
+
+                console.log(dataTurmas)
+
+                if (dataTurmas.length == 0) {
+                    onFail("Não existe TURMAS cadastradas.")
+                }
+
+                let optionTurma = document.querySelector("#optionTurma")
+                optionTurma.innerHTML = "";
+                divTurma.style.display = "block"
+
+                for (let i = 0; i < dataTurmas.length; i++) {
+                    numberInputElementCreator('option', 'optionSelect', 'optionTurma', dataTurmas[i].nome_Turma, dataTurmas[i].iD_Turma)
+                }
+
+            },
+            error: function (response) {
             }
-
-            for (let i = 0; i < data.length; i++) {
-                numberInputElementCreator('option', 'optionSelect', 'optionTurma', data[i].nome_Turma, data[i].iD_Turma )
-            }
-
-        },
-        error: function (response) {
-        }
+        })
     })
-
 
     let btnAdd = document.querySelector("#btnAddNew")
     btnAdd.addEventListener('click', addAluno)
@@ -75,13 +204,10 @@ function popupCreateAluno() {
         let $CPF = document.querySelector("#inputCpf")
         let $DataNascimento = document.querySelector("#inputDate")
 
-        let Escola = document.querySelector("#optionEscola")
-        let Turma = document.querySelector("#optionTurma")
-
         let $Escola = Escola.options[Escola.selectedIndex].value;
-        let $Turma = Turma.options[Turma.selectedIndex].value;     
+        let $Turma = Turma.options[Turma.selectedIndex].value;
 
-        let dataAlunos = { Escola: $Escola, Turma: $Turma, NomeCompleto: $Nome.value, CPF: $CPF.value, DataNascimento: $DataNascimento.value}
+        let dataAlunos = { Escola: $Escola, Turma: $Turma, NomeCompleto: $Nome.value, CPF: $CPF.value, DataNascimento: $DataNascimento.value }
 
         console.log(dataAlunos)
 
@@ -99,52 +225,78 @@ function popupCreateAluno() {
                 onFail("Ocorreu um erro ao adicionar o aluno.")
             }
         })
-       
+
+
+
     }
+
+    let inputDate = document.querySelector('#inputDate');
+
+    inputDate.addEventListener('input', function (event) {
+        let value = event.target.value;
+        value = value.replace(/\D/g, ''); // remove tudo que não for número
+        value = value.replace(/(\d{2})(\d)/, '$1/$2'); // coloca a barra depois do segundo número
+        value = value.replace(/(\d{2})(\d)/, '$1/$2'); // coloca a barra depois do quarto número
+        event.target.value = value;
+    });    
+
+    // Seleciona todos os inputs e selects do formulário
+    const inputs = document.querySelectorAll('form input, form select');
+
+    // Seleciona o botão "Cadastar"
+    const btnAddNew = document.querySelector('#btnAddNew');
+
+    // Função para verificar se o formulário está completamente preenchido
+    function validateForm() {
+        let valid = true;
+
+        // Verifica os inputs
+        inputs.forEach(input => {
+            // Verifica se o campo está vazio ou tem valor inválido
+            if (!input.value || (input.type === 'date' && input.value > new Date().toISOString().split('T')[0])) {
+                valid = false;
+                input.classList.add('is-invalid');
+            } else {
+                input.classList.remove('is-invalid');
+            }
+        });
+        // Seleciona os selects que são obrigatórios
+        const selects = document.querySelectorAll('form select[data-parsley-required="true"]');
+
+        selects.forEach(select => {
+            if (!select.value) {
+                valid = false;
+                select.classList.add('is-invalid');
+            } else {
+                select.classList.remove('is-invalid');
+            }
+        });
+
+        return valid;
+    }
+
+
+    // Função para habilitar ou desabilitar o botão "Cadastar"
+    function toggleButton() {
+        btnAddNew.disabled = !validateForm();
+    }
+
+    // Adiciona um listener para verificar mudanças em todos os campos do formulário
+    inputs.forEach(input => {
+        input.addEventListener('change', toggleButton);
+    });
+
+    // Inicializa o botão "Cadastar" desabilitado
+    toggleButton();
+
+
 }
 
-window.addEventListener('load', SearchAlunos)
-
-function SearchAlunos() {
-
-    $.ajax({
-        contentType: "application/json",
-        url: '/allalunos',
-        type: 'GET',
-        dataType: 'json',
-        success: function (data) {
-            console.log(data)
-            $('#tabelaAlunos').DataTable({
-                data: data,
-                columns: [
-                    { "data": "matricula" },
-                    { "data": "nome_Completo", },
-                    { "data": "iD_Turma" },
-                    { "data": "cpf" },
-                    { "data": "dataDeNascimento" },
-                    { "data": "status_Cadastro" },
-                ],
-                "columnDefs": [
-                    {
-                        "targets": 6, //"Número referente a coluna, startando no 0"
-                        "render": function (data, type, row) {
-                            return "<button id='" + data + "' type='button' onclick='InfoAluno(this);'class='btn btn-primary'>Editar</button >";
-                        }
-                    }
-                ]
-            });
-
-        },
-        error: function (data) {
-            alert("Error: " + data)
-        }
-    })
-}
 
 function InfoAluno(Linha) {
 
     var objTr = $(Linha).parent('td').parent('tr');
-    let ID = objTr.find('td:eq(0)').text().trim();
+    let CPF = objTr.find('td:eq(3)').text().trim();
 
     Swal.fire({
         template: '#my-templateAlunoEdit',
@@ -168,22 +320,57 @@ function InfoAluno(Linha) {
     let EscolaOption = document.querySelector("#optionEscola")
     let TurmaOption = document.querySelector("#optionTurma")
 
-    let dataId = { "Id": ID}
+    let dataMatricula = { "CPF": CPF }
+
+    $.ajax({
+        contentType: "application/json",
+        url: '/allescolas',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+
+            for (let i = 0; i < data.length; i++) {
+                numberInputElementCreator('option', 'optionSelect', 'optionEscola', data[i].nome_Escola, data[i].nome_Escola)
+            }
+
+        },
+        error: function (response) {
+        }
+    })
+
+    $.ajax({
+        contentType: "application/json",
+        url: '/turmas',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+
+            let dataTurmas = data.turmas
+            console.log(dataTurmas)
+
+            for (let i = 0; i < dataTurmas.length; i++) {
+                numberInputElementCreator('option', 'optionSelect', 'optionTurma', dataTurmas[i].nome_Turma, dataTurmas[i].nome_Turma)
+            }
+
+        },
+        error: function (response) {
+        }
+    })
+
 
     $.ajax({
         contentType: "application/json",
         url: '/infoaluno',
         type: 'GET',
         dataType: 'json',
-        data: dataId,
+        data: dataMatricula,
         success: function (data) {
-         
             $Nome.value = data['nome_Completo']
-            $DataNascimento.value = data['data_Nascimento']
+            const date = new Date(data['dataDeNascimento'])
+            const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`
+            $DataNascimento.value = formattedDate
             $CPF.value = data['cpf']
-            StatusOption.option = data['status_Cadastro']
-            /*TurmaOption.option = data['turma']*/
-            
+            $("#optionStatus").val(data['status_Cadastro']);
         },
         error: function (data) {
             alert("Error: " + data)
@@ -194,13 +381,27 @@ function InfoAluno(Linha) {
     btnAlterar.addEventListener('click', EditarAluno)
 
     function EditarAluno() {
-
         let $Status = StatusOption.options[StatusOption.selectedIndex].value;
-/*      let $Escola = EscolaOption.options[EscolaOption.selectedIndex].value;*/
-        let $Turma = TurmaOption.options[TurmaOption.selectedIndex].value;
+        let $EscolaOption = document.getElementById('optionEscola');
+        let $TurmaOption = document.getElementById('optionTurma');
+        let $Escola, $Turma;
 
-        let objData = { "Id": ID, "StatusCadastro": $Status, "Turma": $Turma}
-    
+        if ($EscolaOption.selectedIndex > 0) {
+            $Escola = $EscolaOption.options[$EscolaOption.selectedIndex].value;
+        } else {
+            $Escola = "";
+        }
+
+        if ($TurmaOption.selectedIndex > 0) {
+            $Turma = $TurmaOption.options[$TurmaOption.selectedIndex].value;
+        } else {
+            $Turma = "";
+        }
+
+        let objData = { "CPF": CPF, "StatusCadastro": $Status, "Turma": $Turma, "Escola": $Escola }
+
+
+        console.log(objData)
         $.ajax({
             contentType: "application/json",
             url: '/editaluno',
@@ -218,12 +419,14 @@ function InfoAluno(Linha) {
         })
     }
 
+
     let btnApagar = document.querySelector("#btnRemover")
     btnApagar.addEventListener('click', ApagarAluno)
 
     function ApagarAluno() {
 
-        let objData = { "Id": ID}
+        let objData = { "CPF": CPF }
+        console.log(objData)
 
         $.ajax({
             contentType: "application/json",

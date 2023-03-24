@@ -21,6 +21,10 @@
     {
       "library": "materialize@1.0.0",
       "destination": "wwwroot/lib/materialize/"
+    },
+    {
+      "library": "parsley.js@2.9.2",
+      "destination": "wwwroot/lib/parsley.js/"
     }
   ]
 }

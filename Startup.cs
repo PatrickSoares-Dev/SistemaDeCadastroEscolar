@@ -62,6 +62,16 @@ namespace Sistema_Escolar
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "turma-alunos-count",
+                    pattern: "/turma/{id}/alunos/count",
+                    defaults: new { controller = "Turma", action = "ContarAlunos" });
+            });
+
+
         }
 
     }

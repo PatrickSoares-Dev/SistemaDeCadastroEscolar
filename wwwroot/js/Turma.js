@@ -30,7 +30,7 @@ function popupCreateTurma() {
 
         let $NomeTurma = document.querySelector("#inputNomeTurma")
 
-        let dataTurma = { NomeEscola: 'Crias (Unidade Bangu)', NomeTurma: $NomeTurma.value }
+        let dataTurma = { NomeEscola: $NomeEscola, NomeTurma: $NomeTurma.value }
         console.log(dataTurma)
 
         $.ajax({
@@ -77,24 +77,26 @@ function popupCreateTurma() {
 window.addEventListener('load', SearchTurmas)
 
 function SearchTurmas() {
-
     $.ajax({
         contentType: "application/json",
-        url: '/allturma',
+        url: '/turmas',
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-
             console.log(data)
+            let dataTurmas = data.turmas;
+
+
+
+            console.log(dataTurmas);
 
             $('#tabelaTurma').DataTable({
-                data: data,
+                data: dataTurmas,
                 columns: [
                     { "data": "iD_Turma" },
                     { "data": "nome_Turma" },
                     { "data": "nome_Escola" },
                     { "data": "qtd_Alunos" },
-
                 ],
                 "columnDefs": [
                     {
@@ -107,11 +109,11 @@ function SearchTurmas() {
             });
         },
         error: function (data) {
-            alert("Error: " + data)
+            alert("Error: " + data);
         }
-    })
-
+    });
 }
+
 
 function numberInputElementCreator(element, id, elementPai, value) {
     let newElement = document.createElement(element)

@@ -6,16 +6,14 @@ namespace Sistema_Escolar.Repositorio.IServices
 {
     public interface ITurmaRepositorio
     {
+        Task<object> Adicionar(string NomeEscola, string NomeTurma);
+        Task<TurmasModel> ObterTurma(int idTurma);
+        Task<List<TurmasModel>> ObterTurmas();
+        Task<List<AlunosModel>> ObterAlunosDaTurma(int idTurma);
+        Task<int> ContarAluno(int idTurma);
+        List<TurmasModel> BuscarTodos();
+        public Task<object> ObterTurmasDaEscola(int idEscola);
 
-        public Task<object> Adicionar(string NomeEscola, string NomeTurma);
-
-        public List<TurmasModel> BuscarTodos();
-
-        //public AlunosModel InfoAluno(string Matricula);
-
-        //public Task<object> EditarAluno(string Matricula, string StatusCadastro, int Turma);
-
-        //public Task<object> ApagarAluno(string Matricula);
 
     }
 }
