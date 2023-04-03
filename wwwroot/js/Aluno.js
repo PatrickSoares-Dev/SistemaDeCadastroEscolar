@@ -232,6 +232,8 @@ function popupCreateAluno() {
 
     let inputDate = document.querySelector('#inputDate');
 
+
+
     inputDate.addEventListener('input', function (event) {
         let value = event.target.value;
         value = value.replace(/\D/g, ''); // remove tudo que não for número
@@ -239,6 +241,27 @@ function popupCreateAluno() {
         value = value.replace(/(\d{2})(\d)/, '$1/$2'); // coloca a barra depois do quarto número
         event.target.value = value;
     });    
+
+    // Seleciona o campo de CPF
+    const cpfInput = document.querySelector('#inputCpf');
+
+    // Adiciona um listener para o evento "input" no campo de CPF
+    cpfInput.addEventListener('input', function (event) {
+        // Obtém o valor atual do campo
+        let value = event.target.value;
+
+        // Remove todos os caracteres que não são números
+        value = value.replace(/\D/g, '');
+
+        // Adiciona a máscara de CPF
+        value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        value = value.replace(/(\d{3})(\d)/, '$1.$2');
+        value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+
+        // Define o valor formatado no campo
+        event.target.value = value;
+    });
+
 
     // Seleciona todos os inputs e selects do formulário
     const inputs = document.querySelectorAll('form input, form select');
@@ -261,7 +284,8 @@ function popupCreateAluno() {
             }
         });
         // Seleciona os selects que são obrigatórios
-        const selects = document.querySelectorAll('form select[data-parsley-required="true"]');
+        const selects = document.querySelectorAll('form select[data-parsley-required="true"], #optionTurma');
+
 
         selects.forEach(select => {
             if (!select.value) {
@@ -284,6 +308,7 @@ function popupCreateAluno() {
     // Adiciona um listener para verificar mudanças em todos os campos do formulário
     inputs.forEach(input => {
         input.addEventListener('change', toggleButton);
+
     });
 
     // Inicializa o botão "Cadastar" desabilitado
